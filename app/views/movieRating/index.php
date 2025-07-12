@@ -8,7 +8,7 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background-color: #014421; /* dark green background */
+      background-color: #014421;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -21,13 +21,14 @@
       padding: 30px;
       border-radius: 20px;
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-      width: 300px;
+      width: 90%;
+      max-width: 400px;
       text-align: center;
       border: 2px solid #017a3a;
     }
 
     .rating-container h1 {
-      font-size: 24px;
+      font-size: 26px;
       color: #21f3c1;
       margin-bottom: 20px;
     }
@@ -38,36 +39,49 @@
       margin-bottom: 20px;
     }
 
-    textarea {
+    input[type="text"] {
       width: 100%;
-      height: 80px;
       border-radius: 10px;
       border: none;
-      padding: 10px;
-      resize: none;
+      padding: 12px;
       background-color: #003d1f;
       color: #e0f5e9;
-      font-size: 14px;
+      font-size: 16px;
+      box-sizing: border-box;
+      margin-bottom: 20px;
     }
 
-    textarea::placeholder {
+    input::placeholder {
       color: #a0c0b0;
     }
 
-    button {
-      margin-top: 15px;
-      padding: 12px 25px;
+    .button-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .button-group button {
+      flex: 1 1 45%;
+      padding: 10px;
       background-color: #00c78c;
       border: none;
       border-radius: 10px;
       color: #003d1f;
-      font-size: 16px;
+      font-size: 14px;
       font-weight: bold;
       cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .button-group button:hover {
+      background-color: #03e7a3;
     }
 
     .thanks {
-      margin-top: 20px;
+      margin-top: 10px;
       color: #20f770;
       font-size: 16px;
     }
@@ -77,9 +91,16 @@
   <div class="rating-container">
     <h1>🎬 Rate a Movie 🎬</h1>
     <div class="stars">⭐ ⭐ ⭐ ⭐ ⭐</div>
-    <textarea placeholder="What's the name of the movie?"></textarea><br>
-    <button type="submit">Submit</button>
-    <div class="thanks">🍿Let's get some information! 🍿</div>
+    <input type="text" placeholder="What's the name of the movie?" />
+
+    <div class="button-group">
+      <button>Movie Information</button>
+      <button>Our Ratings</button>
+      <button>Your Rating</button>
+      <button>Exit</button>
+    </div>
+
+    <div class="thanks">🍿 Let's get some information! 🍿</div>
   </div>
 </body>
 </html>
