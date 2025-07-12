@@ -3,11 +3,8 @@
 class MovieRating extends Controller {
 
     public function index() {
-      //$user = $this->model('User');
-      //$data = $user->test();
-
       $this->view('movieRating/index');
       die;
     }
-
-}
+} 
+?>

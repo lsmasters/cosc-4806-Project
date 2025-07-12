@@ -3,7 +3,7 @@
     <div class="page-header" id="banner">
         <div class="row">
             <div class="col-lg-12">
-                <h1>Assignment 4</h1>
+                <h1>Project</h1>
                 <p> Welcome, <?=$_SESSION['username'] ?></p>
                 <p class="lead"> <?= date("F jS, Y"); ?></p>
             </div>
