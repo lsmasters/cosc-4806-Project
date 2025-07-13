@@ -2,7 +2,15 @@
 
 class MovieRating extends Controller {
 
-    public function index() {
+    public function index(){ 
+      $url = "http://www.omdbapi.com/?apikey=" . $_ENV['omdb_key'] . "&t=Barbie";
+      $json = file_get_contents($url);
+      $obj = json_decode($json);
+      $movie=(array) $obj;
+      echo "<pre>";
+      print_r($movie);
+      die;
+  
       $this->view('movieRating/index');
       die;
     }
