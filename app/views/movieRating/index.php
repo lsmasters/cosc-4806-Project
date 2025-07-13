@@ -88,19 +88,23 @@
   </style>
 </head>
 <body>
-  <div class="rating-container">
-    <h1>🎬 Rate a Movie 🎬</h1>
-    <div class="stars">⭐ ⭐ ⭐ ⭐ ⭐</div>
-    <input type="text" placeholder="What's the name of the movie?" />
+  <form action="/movieRating/router" method="get">
+    <div class="rating-container">
+      <h1>🎬 Rate a Movie 🎬</h1>
+      <div class="stars">⭐ ⭐ ⭐ ⭐ ⭐</div>
 
-    <div class="button-group">
-      <button>Movie Information</button>
-      <button>Our Ratings</button>
-      <button>Your Rating</button>
-      <button>Exit</button>
+      <input type="text" name="movieName" placeholder="What's the name of the movie?" />
+
+      <div class="button-group">
+        <button type="submit" name="action" value="getMovieInformation">Movie Information</button>
+        <button type="submit" name="action" value="getOurRatings">Our Ratings</button>
+        <button type="submit" name="action" value="getYourRating">Your Rating</button>
+        <button type="submit" name="action" value="exit">Exit</button>
+      </div>
+
+      <div class="thanks">🍿 No good movie is too long and no bad movie is short enough. 🍿</div>
     </div>
+  </form>
 
-    <div class="thanks">🍿 Let's get some information! 🍿</div>
-  </div>
 </body>
 </html>
