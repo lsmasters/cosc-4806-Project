@@ -86,25 +86,31 @@
       font-size: 16px;
     }
   </style>
+
+  <script>
+    function setAction(actionUrl) {
+      const form = document.getElementById('movieForm');
+      form.action = actionUrl;
+    }
+  </script>
 </head>
 <body>
-  <form action="/movieRating/router" method="get">
+  <form id="movieForm" method="get">
     <div class="rating-container">
       <h1>🎬 Rate a Movie 🎬</h1>
       <div class="stars">⭐ ⭐ ⭐ ⭐ ⭐</div>
 
-      <input type="text" name="movieName" placeholder="What's the name of the movie?" />
+      <input type="text" name="movieName" placeholder="What's the name of the movie?" required />
 
       <div class="button-group">
-        <button type="submit" name="action" value="getMovieInformation">Movie Information</button>
-        <button type="submit" name="action" value="getOurRatings">Our Ratings</button>
-        <button type="submit" name="action" value="getYourRating">Your Rating</button>
-        <button type="submit" name="action" value="exit">Exit</button>
+        <button type="submit" onclick="setAction('/movieInformation/getMovieInformation')">Movie Information</button>
+        <button type="submit" onclick="setAction('/ourRatings/show')">Our Ratings</button>
+        <button type="submit" onclick="setAction('/userRating/get')">Your Rating</button>
+        <button type="submit" onclick="setAction('/goodbye/exit')">Exit</button>
       </div>
 
       <div class="thanks">🍿 No good movie is too long and no bad movie is short enough. 🍿</div>
     </div>
   </form>
-
 </body>
 </html>

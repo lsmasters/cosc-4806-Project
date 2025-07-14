@@ -3,6 +3,7 @@
 class MovieRating extends Controller {
 
     public function index(){ 
+      /*
       $url = "http://www.omdbapi.com/?apikey=" . $_ENV['omdb_key'] . "&t=Barbie";
       $json = file_get_contents($url);
       $obj = json_decode($json);
@@ -10,7 +11,7 @@ class MovieRating extends Controller {
       echo "<pre>";
       print_r($movie);
       die;
-  
+    */
       $this->view('movieRating/index');
       die;
     }
