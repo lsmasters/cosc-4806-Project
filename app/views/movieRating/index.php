@@ -95,7 +95,7 @@
   </script>
 </head>
 <body>
-  <form id="movieForm" method="get">
+  <form id="movieForm" method="post">
     <div class="rating-container">
       <h1>🎬 Rate a Movie 🎬</h1>
       <div class="stars">⭐ ⭐ ⭐ ⭐ ⭐</div>
@@ -103,7 +103,7 @@
       <input type="text" name="movieName" placeholder="What's the name of the movie?" required />
 
       <div class="button-group">
-        <button type="submit" onclick="setAction('/movieInformation/getMovieInformation')">Movie Information</button>
+        <button type="submit" onclick="setAction('movieRating/getInfo')">Movie Information</button>
         <button type="submit" onclick="setAction('/ourRatings/show')">Our Ratings</button>
         <button type="submit" onclick="setAction('/userRating/get')">Your Rating</button>
         <button type="submit" onclick="setAction('/goodbye/exit')">Exit</button>
