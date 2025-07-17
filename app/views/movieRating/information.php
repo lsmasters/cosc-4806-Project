@@ -86,6 +86,9 @@ $movie = $_SESSION['movie'] ?? null;
       <p><strong>Director:</strong> <?= htmlspecialchars($movie['Director'] ?? 'N/A') ?></p>
       <p class="genre"><strong>Genre:</strong> <?= htmlspecialchars($movie['Genre'] ?? 'N/A') ?></p>
       <p class="rating"><strong>IMDb Rating:</strong> <?= htmlspecialchars($movie['imdbRating'] ?? 'N/A') ?></p>
+      <p class="genre"><strong>Actors:</strong> <?= htmlspecialchars($movie['Actors'] ?? 'N/A') ?></p>
+      <p class="rating"><strong>Runtime:</strong> <?= htmlspecialchars($movie['Runtime'] ?? 'N/A') ?></p>
+      <p class="genre"><strong>Awards:</strong> <?= htmlspecialchars($movie['Awards'] ?? 'N/A') ?></p>
       <p><strong>Plot:</strong> <?= htmlspecialchars($movie['Plot'] ?? 'No description available.') ?></p>
     </div>
   </div>
