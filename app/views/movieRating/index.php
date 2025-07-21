@@ -104,8 +104,8 @@
 
       <div class="button-group">
         <button type="submit" onclick="setAction('movieRating/getInfo')">Movie Information</button>
-        <button type="submit" onclick="setAction('/ourRatings/show')">Our Ratings</button>
-        <button type="submit" onclick="setAction('/userRating/get')">Your Rating</button>
+        <button type="submit" onclick="setAction('movieRating/getOurReviews')">Our Ratings</button>
+        <button type="submit" <button type="submit" onclick="setAction('movieRating/makeReview')">My Rating</button>
         <button type="submit" onclick="setAction('/goodbye/exit')">Exit</button>
       </div>
 

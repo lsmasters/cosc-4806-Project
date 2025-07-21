@@ -6,6 +6,16 @@ class MovieRating extends Controller {
       $this->view('movieRating/index');
     }
 
+    public function getOurReviews(){ 
+      $this->view('movieRating/?????');
+    }
+
+    public function makeReview(){
+      $title = $_REQUEST['movieName'] ?? '';
+        
+      $this->view('movieRating/makeReview');
+    }
+
   public function getInfo(){
       $title = $_REQUEST['movieName'] ?? '';
 
