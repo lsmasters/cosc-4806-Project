@@ -14,10 +14,42 @@ class MovieRating extends Controller {
         $title = $_POST['movieTitle'] ?? '';
         $score = $_POST['score'] ?? '';
 
-        echo "Movie Title: " . $title . "<br>";
-        echo "Score: " . $score . "<br>";
+        //echo "Movie Title: " . $title . "<br>";
+        //echo "Score: " . $score . "<br>";
+        //die
+
+        $url = "https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=" . $_ENV['gemini'];
+        $data = array(
+            "contents" => array(
+                array
+                    ("role" => "user",
+                    "parts" => array(
+                        array(
+                            "text" => "Write a movie review  as a movie critic for the movie " . $title . " with a score of " . $score . " out of 10."
+                        )
+                    )
+                )
+            )
+        );
+        $json_data = json_encode($data);
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, ARRAY('Content-Type: application/json'));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        $response = curl_exec($ch);
+        curl_close($ch);
+        if(curl_errno($ch)){
+            echo 'Error:' . curl_error($ch);
+        }
+        
+        $obj = json_decode($response, true);
+        $_SESSION['review'] = (array) $obj;
+        echo "<pre>"; 
+        print_r($_SESSION['review']);
+        echo "</pre>";
         die;
-      //$this->view('movieRating/?????');
+        
+            //$this->view('movieRating/?????');
     }
 
     public function makeReview(){
