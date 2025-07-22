@@ -6,6 +6,10 @@ class MovieRating extends Controller {
       $this->view('movieRating/index');
     }
 
+    public function displayReview(){ 
+      $this->view('movieRating/displayReview');
+    }
+
     public function getOurReviews(){ 
       //$this->view('movieRating/?????');
     }
@@ -14,18 +18,14 @@ class MovieRating extends Controller {
         $title = $_POST['movieTitle'] ?? '';
         $score = $_POST['score'] ?? '';
 
-        //echo "Movie Title: " . $title . "<br>";
-        //echo "Score: " . $score . "<br>";
-        //die
-
-        $url = "https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=" . $_ENV['gemini'];
+        $url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=" . $_ENV['gemini'];
         $data = array(
             "contents" => array(
                 array
                     ("role" => "user",
                     "parts" => array(
                         array(
-                            "text" => "Write a movie review  as a movie critic for the movie " . $title . " with a score of " . $score . " out of 10."
+                            "text" => "Write five different movie reviews  as a movie critic for the movie " . $title . " with a score of " . $score . " out of 10.  The voices for the five reviews are Shakespeare, Stephen King, Martin Scorsese, Quentin Tarantino, and a teenager."
                         )
                     )
                 )
@@ -36,6 +36,8 @@ class MovieRating extends Controller {
         curl_setopt($ch, CURLOPT_HTTPHEADER, ARRAY('Content-Type: application/json'));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $json_data); 
+        curl_setopt($ch, CURLOPT_POST, true); 
         $response = curl_exec($ch);
         curl_close($ch);
         if(curl_errno($ch)){
@@ -44,12 +46,8 @@ class MovieRating extends Controller {
         
         $obj = json_decode($response, true);
         $_SESSION['review'] = (array) $obj;
-        echo "<pre>"; 
-        print_r($_SESSION['review']);
-        echo "</pre>";
-        die;
         
-            //$this->view('movieRating/?????');
+        $this->view('movieRating/displayReview');
     }
 
     public function makeReview(){
