@@ -97,7 +97,7 @@
 
   <div class="form-container">
     <h2>Movie Review Generator</h2>
-    <form action="generateReview.php" method="POST">
+    <form action="generateReview" method="POST">
       <label for="movieTitle">Movie Title</label>
       <input type="text" id="movieTitle" name="movieTitle" required>
 

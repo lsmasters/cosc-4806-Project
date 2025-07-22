@@ -7,7 +7,17 @@ class MovieRating extends Controller {
     }
 
     public function getOurReviews(){ 
-      $this->view('movieRating/?????');
+      //$this->view('movieRating/?????');
+    }
+
+    public function generateReview() { 
+        $title = $_POST['movieTitle'] ?? '';
+        $score = $_POST['score'] ?? '';
+
+        echo "Movie Title: " . $title . "<br>";
+        echo "Score: " . $score . "<br>";
+        die;
+      //$this->view('movieRating/?????');
     }
 
     public function makeReview(){
@@ -31,7 +41,7 @@ class MovieRating extends Controller {
 
       // Send data to view movieRating/information
       $this->view('movieRating/information');
-  }
+      }
 
    
 } 
