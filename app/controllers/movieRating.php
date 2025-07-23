@@ -6,6 +6,12 @@ class MovieRating extends Controller {
       $this->view('movieRating/index');
     }
 
+    public function saveReview(){ 
+      //$this->view('movieRating/index');
+        echo "saveReview function";
+        die;
+  }
+
     public function displayReview(){ 
       $this->view('movieRating/displayReview');
     }
@@ -25,7 +31,7 @@ class MovieRating extends Controller {
                     ("role" => "user",
                     "parts" => array(
                         array(
-                            "text" => "Write five different movie reviews  as a movie critic for the movie " . $title . " with a score of " . $score . " out of 10.  The voices for the five reviews are Shakespeare, Stephen King, Martin Scorsese, Quentin Tarantino, and a teenager."
+                            "text" => "Write five different short movie reviews  as a movie critic for the movie " . $title . " with a score of " . $score . " out of 10.  The voices for the five reviews are Shakespeare, Stephen King, Martin Scorsese, Quentin Tarantino, and a teenager."
                         )
                     )
                 )

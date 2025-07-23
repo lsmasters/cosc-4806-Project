@@ -17,29 +17,44 @@
     }
 
     form {
-      max-width: 900px;
+      max-width: 1000px;
       margin: 0 auto;
     }
 
-    .review {
+    .review-option {
+      display: none;
+    }
+
+    .review-label {
+      display: block;
+      border: 2px solid #3c6;
       background-color: #2a4d2a;
       border-radius: 12px;
-      padding: 15px;
+      padding: 20px;
       margin-bottom: 20px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-    }
-
-    label {
-      display: flex;
-      align-items: flex-start;
       cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     }
 
-    input[type="radio"] {
-      margin-right: 16px;
-      margin-top: 6px;
-      transform: scale(1.5);
-      accent-color: #00cc66;
+    .review-label:hover {
+      background-color: #396f39;
+    }
+
+    .review-option:checked + .review-label {
+      border-color: #00ff88;
+      background-color: #3b8040;
+      box-shadow: 0 0 10px #00ff88;
+    }
+
+    .review-title {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    pre {
+      white-space: pre-wrap;
+      margin: 0;
     }
 
     .submit-button {
@@ -74,18 +89,19 @@
     foreach ($reviews as $index => $reviewText) {
         $fullReview = trim($reviewText) . "\n**Rating: 5/10**";
         $lines = explode("\n", $fullReview);
-        $title = array_shift($lines); // Get first line as title
-        $body = implode("\n", $lines); // Rest of review
+        $title = array_shift($lines);
+        $body = implode("\n", $lines);
 
-        echo "<div class='review'>";
-        echo "<label for='review$index'>";
-        echo "<input type='radio' name='selectedReview' value='" . htmlspecialchars($fullReview, ENT_QUOTES) . "' id='review$index' required>";
-        echo "<div>";
-        echo "<strong>" . htmlspecialchars($title) . "</strong><br><br>";
-        echo "<pre style='white-space: pre-wrap; margin: 0;'>" . htmlspecialchars($body) . "</pre>";
-        echo "</div>";
+        $id = "review$index";
+        $escapedReview = htmlspecialchars($fullReview, ENT_QUOTES);
+        $escapedTitle = htmlspecialchars($title);
+        $escapedBody = htmlspecialchars($body);
+
+        echo "<input type='radio' class='review-option' name='selectedReview' value='$escapedReview' id='$id' required>";
+        echo "<label class='review-label' for='$id'>";
+        echo "<div class='review-title'>$escapedTitle</div>";
+        echo "<pre>$escapedBody</pre>";
         echo "</label>";
-        echo "</div>";
     }
   ?>
 
