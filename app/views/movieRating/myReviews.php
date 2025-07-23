@@ -62,7 +62,7 @@
     <tbody>
       <?php foreach ($_SESSION['movies'] as $entry): ?>
         <tr>
-          <td><?= htmlspecialchars($entry['movieID']) ?></td>
+          <td><?= htmlspecialchars($entry['movieName']) ?></td>
           <td><?= htmlspecialchars($entry['userID']) ?></td>
           <td><?= htmlspecialchars($entry['rating']) ?>/10</td>
           <td><?= nl2br(htmlspecialchars($entry['comment'])) ?></td>
