@@ -6,6 +6,16 @@ class MovieRating extends Controller {
       $this->view('movieRating/index');
     }
 
+    public function getOurReviews(){ 
+        $movie = $this->model('Movie');
+        $_SESSION['movies'] = $movie->get_all_movies();
+        echo "<pre>";
+        //print_r($_SESSION['movies']);
+        //echo "</pre>";
+        //die;
+       $this->view('movieRating/myReviews');
+    }
+
     public function saveReview(){ 
       //$this->view('movieRating/index');
         echo "saveReview function";
@@ -14,10 +24,6 @@ class MovieRating extends Controller {
 
     public function displayReview(){ 
       $this->view('movieRating/displayReview');
-    }
-
-    public function getOurReviews(){ 
-      //$this->view('movieRating/?????');
     }
 
     public function generateReview() { 
