@@ -17,11 +17,13 @@ class MovieRating extends Controller {
     }
 
     public function saveReview(){ 
-      //$this->view('movieRating/index');
-        echo "saveReview function";
+        $movie = $this->model('Movie');
+        $movie-> create();
+        $this->view('movieRating/myReviews');
+
         die;
   }
-
+ 
     public function displayReview(){ 
       $this->view('movieRating/displayReview');
     }

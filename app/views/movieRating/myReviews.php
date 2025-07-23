@@ -50,6 +50,18 @@
 <h1>Our Reviews</h1>
 
 <?php if (!empty($_SESSION['movies']) ): ?>
+
+  <?php
+    // Sort by movie name (A-Z) and then rating (high to low)
+    usort($_SESSION['movies'], function($a, $b) {
+        $movieCompare = strcmp($a['movieName'], $b['movieName']);
+        if ($movieCompare === 0) {
+            return $b['rating'] <=> $a['rating']; // Descending rating
+        }
+        return $movieCompare; // Alphabetical movie name
+    });
+  ?>
+
   <table>
     <thead>
       <tr>
