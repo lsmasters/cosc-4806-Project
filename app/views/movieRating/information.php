@@ -1,5 +1,6 @@
 <?php
 $movie = $_SESSION['movie'] ?? null;
+$_SESSION['movieID'] = $movie['imdb_id'];  
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -9,21 +9,40 @@ class MovieRating extends Controller {
     public function getOurReviews(){ 
         $movie = $this->model('Movie');
         $_SESSION['movies'] = $movie->get_all_movies();
-        echo "<pre>";
-        //print_r($_SESSION['movies']);
-        //echo "</pre>";
-        //die;
-       $this->view('movieRating/myReviews');
+        
+        $this->view('movieRating/myReviews');
     }
 
-    public function saveReview(){ 
-        $movie = $this->model('Movie');
-        $movie-> create();
-        $this->view('movieRating/myReviews');
+    public function saveReview() {
+        $fullReview = $_POST['selectedReview'] ?? '';
+        $movieName = $_POST['movieTitle'] ?? '';
+        $rating = $_POST['score'] ?? '';
+        $userId = $_SESSION['user_id'] ?? 1; // Fallback for now
 
-        die;
-  }
- 
+        // Parse the review
+        $lines = explode("\n", $fullReview);
+        $title = array_shift($lines);
+        $comment = trim(implode("\n", $lines));
+
+        // Prepare data
+        $review = [
+            'movieID' => null, // Set this if you need a real ID
+            'movieName' => $movieName,
+            'userID' => $userId,
+            'rating' => $rating,
+            'comment' => $comment,
+        ];
+
+        // Store review (optional)
+        $_SESSION['saved_review'] = $review;
+
+        // Save using model
+        $movie = $this->model('Movie');
+        $movie->create($review); // <-- Pass data to create()
+
+        return $this->getOurReviews();
+    }
+
     public function displayReview(){ 
       $this->view('movieRating/displayReview');
     }
@@ -60,6 +79,11 @@ class MovieRating extends Controller {
         
         $obj = json_decode($response, true);
         $_SESSION['review'] = (array) $obj;
+        //echo '<pre>';
+        //print_r($_SESSION['review']);
+        //echo '</pre>';
+        //die;
+
         
         $this->view('movieRating/displayReview');
     }

@@ -1,3 +1,7 @@
+<?php
+$raw = $_SESSION['review']['candidates'][0]['content']['parts'][0]['text'] ?? '';
+$reviewList = preg_split("/\n{2,}/", trim($raw)); // Split into reviews by blank lines
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -86,18 +90,22 @@
 <form action="/movieRating/saveReview" method="post">
   <?php
     $textBlock = $_SESSION['review']['candidates'][0]['content']['parts'][0]['text'];
-    $reviews = preg_split('/\*\*Rating: \d+\/10\*\*/', $textBlock, -1, PREG_SPLIT_NO_EMPTY);
+
+    // Split the block into individual reviews using "**[number]." as a delimiter
+    $reviews = preg_split('/\*\*\d+\.\s*/', $textBlock, -1, PREG_SPLIT_NO_EMPTY);
 
     foreach ($reviews as $index => $reviewText) {
-        $fullReview = trim($reviewText) . "\n**Rating: 5/10**";
-        $lines = explode("\n", $fullReview);
-        $title = array_shift($lines);
-        $body = implode("\n", $lines);
+        $cleanText = trim($reviewText);
+        if ($cleanText === '') continue;
 
         $id = "review$index";
-        $escapedReview = htmlspecialchars($fullReview, ENT_QUOTES);
+        $escapedReview = htmlspecialchars($cleanText, ENT_QUOTES);
+
+        // Use first line as a title (before the first colon)
+        $lines = explode("\n", $cleanText);
+        $title = explode(':', $lines[0])[0] ?? "Review #" . ($index + 1);
         $escapedTitle = htmlspecialchars($title);
-        $escapedBody = htmlspecialchars($body);
+        $escapedBody = htmlspecialchars(implode("\n", array_slice($lines, 1)));
 
         echo "<label class='review' for='$id'>";
         echo "<input type='radio' name='selectedReview' value='$escapedReview' id='$id' required>";
@@ -111,7 +119,6 @@
 
   <input type="hidden" name="movieTitle" value="<?= htmlspecialchars($_POST['movieTitle'] ?? '') ?>">
   <input type="hidden" name="score" value="<?= htmlspecialchars($_POST['score'] ?? '') ?>">
-
   <button type="submit" class="submit-button">Save Selected Review</button>
 </form>
 

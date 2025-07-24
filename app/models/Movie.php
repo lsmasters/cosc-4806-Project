@@ -21,43 +21,30 @@ class Movie {
       return $rows;
     }
 
-  public function create() {
-      // Ensure selectedReview is provided and exists in the reviews array
-      if (
-          !isset($_POST['selectedReview']) ||
-          !isset($_POST['reviews'][$_POST['selectedReview']])
-      ) {
-          throw new Exception("Invalid or missing review selection.");
-      }
+    public function create($review) {   
+        $movieName = $review['movieName'] ?? null;
+        $userId = $_SESSION['userID'] ?? null;
+        $rating = $review['rating'] ?? null;
+        $comment = $review['comment'] ?? null;
 
-      // Safe to use now
-      $selectedReviewId = $_POST['selectedReview'];
-      $review = $_POST['reviews'][$selectedReviewId];
+        // Optional: Validate fields
 
-      $movieID = $review['movieID'] ?? null;
-      $movieName = $review['movieName'] ?? null;
-      $userId = $review['userID'] ?? null;
-      $rating = $review['rating'] ?? null;
-      $comment = $review['comment'] ?? null;
 
-      // Optional: validate required fields
-      if (!$movieID || !$userId || !$rating || !$comment || !$movieName) {
-          throw new Exception("Missing required review data.");
-      }
+      
 
-      // Insert into database
-      $db = db_connect();
-      $sql = "INSERT INTO movies (movieID, userID, rating, comment, movieName)
-              VALUES (:movieID, :userID, :rating, :comment, :movieName)";
-      $stmt = $db->prepare($sql);
-      $stmt->bindParam(':movieID', $movieID);
-      $stmt->bindParam(':userID', $userId);
-      $stmt->bindParam(':rating', $rating);
-      $stmt->bindParam(':comment', $comment);
-      $stmt->bindParam(':movieName', $movieName);
+        // Insert into database
+        $db = db_connect();
+        $sql = "INSERT INTO movies (userID, rating, comment, movieName)
+                VALUES (:userID, :rating, :comment, :movieName)";
+        $stmt = $db->prepare($sql);
+    
+        $stmt->bindParam(':userID', $userId);
+        $stmt->bindParam(':rating', $rating);
+        $stmt->bindParam(':comment', $comment);
+        $stmt->bindParam(':movieName', $movieName);
 
-      return $stmt->execute();
-  }
+        return $stmt->execute();
+    }
 
 
 
