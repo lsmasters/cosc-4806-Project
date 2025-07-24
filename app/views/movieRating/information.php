@@ -1,3 +1,6 @@
+<?php  //show the appropriate header public/privzgd or notLoggedIn and LoggedIn
+include 'loadHeader.php';
+?>
 <?php
 $movie = $_SESSION['movie'] ?? null;
 $_SESSION['movieID'] = $movie['imdb_id'];  

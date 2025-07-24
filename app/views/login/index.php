@@ -1,4 +1,9 @@
+
 <?php require_once 'app/views/templates/headerPublic.php'; ?>
+
+<?php  //show the appropriate header public/privzgd or notLoggedIn and LoggedIn
+include 'loadHeader.php';
+?>
 
 
 <?php

@@ -1,3 +1,6 @@
+<?php  //show the appropriate header public/privzgd or notLoggedIn and LoggedIn
+include 'loadHeader.php';
+?>
 <?php
 $raw = $_SESSION['review']['candidates'][0]['content']['parts'][0]['text'] ?? '';
 $reviewList = preg_split("/\n{2,}/", trim($raw)); // Split into reviews by blank lines

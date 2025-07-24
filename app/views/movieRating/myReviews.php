@@ -1,3 +1,6 @@
+<?php  //show the appropriate header public/privzgd or notLoggedIn and LoggedIn
+include 'loadHeader.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
