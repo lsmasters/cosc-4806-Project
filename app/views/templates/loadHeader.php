@@ -5,5 +5,6 @@ if ($_SESSION['auth'] == 1) {
     include 'header.php';
 } else {
     include 'headerPublic.php';
+    $_SESSION['userID'] = 0;
 }
 ?>
