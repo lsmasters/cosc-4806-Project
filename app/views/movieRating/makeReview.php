@@ -1,4 +1,15 @@
+<?php require_once 'app/views/templates/headerPublic.php'; ?>
 <?php  //show the appropriate header public/privzgd or notLoggedIn and LoggedIn
+include 'templates/loadHeader.php';
+?>
+session_start();
+
+if (isset($_POST['movieName'])) {
+    $_SESSION['movieName'] = $_POST['movieName'];
+}
+
+$movieName = $_SESSION['movieName'] ?? '';
+
 include 'loadHeader.php';
 ?>
 <!DOCTYPE html>
@@ -97,12 +108,11 @@ include 'loadHeader.php';
   </style>
 </head>
 <body>
-
   <div class="form-container">
     <h2>Movie Review Generator</h2>
     <form action="generateReview" method="POST">
       <label for="movieTitle">Movie Title</label>
-      <input type="text" id="movieTitle" name="movieTitle" required>
+      <input type="text" id="movieTitle" name="movieTitle" value="<?php echo htmlspecialchars($movieName); ?>" required>
 
       <label>Your Score (1–10)</label>
       <div class="stars" id="starContainer">
@@ -137,6 +147,5 @@ include 'loadHeader.php';
       starContainer.appendChild(btn);
     }
   </script>
-
 </body>
 </html>

@@ -1,3 +1,4 @@
+<?php require_once 'app/views/templates/headerPublic.php'; ?>
 <?php  //show the appropriate header public/privzgd or notLoggedIn and LoggedIn
 include 'loadHeader.php';
 ?>
@@ -12,13 +13,8 @@ include 'loadHeader.php';
       margin: 0;
       font-family: Arial, sans-serif;
       background-color: #014421;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
       color: #00ffaa;
     }
-
     .rating-container {
       background-color: #015c2c;
       padding: 30px;
@@ -28,20 +24,18 @@ include 'loadHeader.php';
       max-width: 400px;
       text-align: center;
       border: 2px solid #017a3a;
+      margin: 40px auto;
     }
-
     .rating-container h1 {
       font-size: 26px;
       color: #21f3c1;
       margin-bottom: 20px;
     }
-
     .stars {
       font-size: 30px;
       color: gold;
       margin-bottom: 20px;
     }
-
     input[type="text"] {
       width: 100%;
       border-radius: 10px;
@@ -50,14 +44,12 @@ include 'loadHeader.php';
       background-color: #003d1f;
       color: #e0f5e9;
       font-size: 16px;
-      box-sizing: border-box;
       margin-bottom: 20px;
+      box-sizing: border-box;
     }
-
     input::placeholder {
       color: #a0c0b0;
     }
-
     .button-group {
       display: flex;
       flex-wrap: wrap;
@@ -65,7 +57,6 @@ include 'loadHeader.php';
       justify-content: center;
       margin-bottom: 20px;
     }
-
     .button-group button {
       flex: 1 1 45%;
       padding: 10px;
@@ -78,27 +69,23 @@ include 'loadHeader.php';
       cursor: pointer;
       transition: background-color 0.3s;
     }
-
     .button-group button:hover {
       background-color: #03e7a3;
     }
-
     .thanks {
       margin-top: 10px;
       color: #20f770;
       font-size: 16px;
     }
   </style>
-
   <script>
     function setAction(actionUrl) {
-      const form = document.getElementById('movieForm');
-      form.action = actionUrl;
+      document.getElementById('movieForm').action = actionUrl;
     }
   </script>
 </head>
 <body>
-  <form id="movieForm" method="post">
+  <form id="movieForm" method="POST">
     <div class="rating-container">
       <h1>🎬 Rate a Movie 🎬</h1>
       <div class="stars">⭐ ⭐ ⭐ ⭐ ⭐</div>
@@ -108,12 +95,13 @@ include 'loadHeader.php';
       <div class="button-group">
         <button type="submit" onclick="setAction('movieRating/getInfo')">Movie Information</button>
         <button type="submit" onclick="setAction('movieRating/getOurReviews')">Our Ratings</button>
-        <button type="submit" <button type="submit" onclick="setAction('movieRating/makeReview')">My Rating</button>
+        <button type="submit" onclick="setAction('movieRating/makeReview')">My Rating</button>
         <button type="submit" onclick="setAction('/goodbye/exit')">Exit</button>
       </div>
 
       <div class="thanks">🍿 No good movie is too long and no bad movie is short enough. 🍿</div>
     </div>
   </form>
+
 </body>
 </html>
